@@ -73,3 +73,10 @@ This library is created by [Vercel](https://vercel.com) and [Next.js](https://ne
 ## Vercel Authentication
 
 - [Vercel Authentication](https://vercel.com/docs/security/deployment-protection/methods-to-protect-deployments/vercel-authentication)
+
+## Vercel AI SDK & LangChain Serve
+
+- [Vercel AI SDK LangChainStream](https://sdk.vercel.ai/docs/api-reference/providers/langchain-stream) -- **must read**
+- [Integrating with LangServe](https://js.langchain.com/docs/ecosystem/langserve) --- **must read**
+- [Is there an example of how to use Langserve + RemoteRunnable + vercel AI? #892](https://github.com/vercel/ai/discussions/892)
+- [LangChain + Next.js Starter](https://vercel.com/templates/next.js/langchain-starter)
