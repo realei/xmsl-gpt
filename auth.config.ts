@@ -3,8 +3,8 @@ import type { NextAuthConfig } from 'next-auth'
 export const authConfig = {
   secret: process.env.AUTH_SECRET,
   pages: {
-    signIn: '/login',
-    newUser: '/signup'
+    signIn: '/login'
+    // newUser: '/signup'
   },
   callbacks: {
     async authorized({ auth, request: { nextUrl } }) {
@@ -32,7 +32,11 @@ export const authConfig = {
         const { id } = token as { id: string }
         const { user } = session
 
-        session = { ...session, user: { ...user, id } }
+        session = {
+          ...session,
+          user: { ...user, id },
+          token: { ...token }
+        }
       }
 
       return session

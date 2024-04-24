@@ -78,5 +78,14 @@ This library is created by [Vercel](https://vercel.com) and [Next.js](https://ne
 
 - [Vercel AI SDK LangChainStream](https://sdk.vercel.ai/docs/api-reference/providers/langchain-stream) -- **must read**
 - [Integrating with LangServe](https://js.langchain.com/docs/ecosystem/langserve) --- **must read**
+- [Introducing AI SDK 3.0 with Generative UI support](https://vercel.com/blog/ai-sdk-3-generative-ui) --- **must read**
+  - [render](https://sdk.vercel.ai/docs/api-reference/generative-ui/render)
+  - The render function allows you to map OpenAI-compatible model/providers with Function Calls and Assistants Tools to React Server Components using the tools key. Note that both text and render can be specified at the same time, with text being the fallback for when no function is called by the model.
+  - [ai/rsc with langchain #288](https://github.com/vercel/ai-chatbot/issues/288) --- Example Code
 - [Is there an example of how to use Langserve + RemoteRunnable + vercel AI? #892](https://github.com/vercel/ai/discussions/892)
 - [LangChain + Next.js Starter](https://vercel.com/templates/next.js/langchain-starter)
+- [Currently, it is not possible to pass headers when creating a RemoteRunnable #3615](https://github.com/langchain-ai/langchainjs/issues/3615)
+- [Upgrade Guide (NextAuth.js v5)](https://authjs.dev/getting-started/migrating-to-v5)
+- [阮一峰: JSON Web Token 入门教程](https://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html)
+- [NextAuth V5 Beta: Can't use auth() to get values from jwt() callback in v5 #9122](https://github.com/nextauthjs/next-auth/issues/9122)
+- [AWS: Build a Serverless Web Application](https://aws.amazon.com/getting-started/hands-on/build-serverless-web-app-lambda-apigateway-s3-dynamodb-cognito/?nc1=h_ls)

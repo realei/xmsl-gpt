@@ -22,6 +22,14 @@ export interface Session {
     id: string
     email: string
   }
+  // token: {
+  //   email: string
+  //   sub: string
+  //   id: string
+  //   iat: number
+  //   exp: number
+  //   jti: string
+  // }
 }
 
 export interface AuthResult {
