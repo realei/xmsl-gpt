@@ -34,6 +34,7 @@ import { SpinnerMessage, UserMessage } from '@/components/stocks/message'
 import { Chat } from '@/lib/types'
 import { auth } from '@/auth'
 import { RemoteRunnable } from '@langchain/core/runnables/remote'
+import { Session } from '@/lib/types'
 
 import jwt from 'jsonwebtoken'
 
@@ -125,14 +126,23 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
 async function submitUserMessage(content: string) {
   'use server'
 
-  const secret = process.env.AUTH_SECRET
+  const secret = process.env.AUTH_SECRET || 'Please_Define_AUTH_SECRET'
   const alg = 'HS256'
-  const session = await auth()
-  const token = jwt.sign(session.token, secret, { algorithm: alg })
+  // const alg = process.env.AUTH_ALG
+  const session = (await auth()) as unknown as Session
+
+  // if (typeof secret === 'undefined') {
+  //   // throw new Error(
+  //   //   "Website configuration doesn't have auth parameters configured."
+  //   // )
+  //   console.error('AUTH_SECRET is not defined!')
+  // }
+
+  const token = jwt.sign(session.user, secret, { algorithm: alg })
 
   const remoteChain = new RemoteRunnable({
-    // url: 'http://127.0.0.1:8000/openai/',
-    url: 'https://smartlife-ai-production.up.railway.app/openai/',
+    url: 'http://127.0.0.1:8000/agent/',
+    // url: 'https://smartlife-ai-production.up.railway.app/openai/',
     options: {
       timeout: 10000,
       headers: {
@@ -167,11 +177,26 @@ async function submitUserMessage(content: string) {
       textNode = <BotMessage content={textStream.value} />
     }
 
-    const stream = await remoteChain.stream(content)
+    const stream = await remoteChain.stream(
+      { input: content },
+      { configurable: { session_id: '[your-value-here]' } }
+    )
 
+    // for await (const chunk of stream) {
+    //   if (typeof chunk === 'object' && chunk !== null && 'content' in chunk) {
+    //     const content = chunk.output
+    //     if (typeof content === 'string') {
+    //       textStream.update(content)
+    //     }
+    //   }
+    // }
     for await (const chunk of stream) {
-      textStream.update(chunk.content)
+      result = chunk?.output || ''
     }
+
+    console.log(result)
+
+    textStream.update(result)
 
     textStream.done()
 

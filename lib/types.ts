@@ -21,15 +21,15 @@ export interface Session {
   user: {
     id: string
     email: string
+    token: {
+      email: string
+      sub: string
+      id: string
+      iat: number
+      exp: number
+      jti: string
+    }
   }
-  // token: {
-  //   email: string
-  //   sub: string
-  //   id: string
-  //   iat: number
-  //   exp: number
-  //   jti: string
-  // }
 }
 
 export interface AuthResult {
@@ -42,4 +42,12 @@ export interface User extends Record<string, any> {
   email: string
   password: string
   salt: string
+  token: {
+    email: string
+    sub: string
+    id: string
+    iat: number
+    exp: number
+    jti: string
+  }
 }

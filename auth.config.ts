@@ -1,4 +1,5 @@
 import type { NextAuthConfig } from 'next-auth'
+import { Provider } from 'next-auth/providers'
 
 export const authConfig = {
   secret: process.env.AUTH_SECRET,
@@ -34,13 +35,12 @@ export const authConfig = {
 
         session = {
           ...session,
-          user: { ...user, id },
-          token: { ...token }
+          user: { ...user, id }
         }
       }
 
       return session
     }
   },
-  providers: []
+  providers: [] as Provider[]
 } satisfies NextAuthConfig
